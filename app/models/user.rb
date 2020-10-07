@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   #保存される前に実行されるアクション
-  before_save { self.email = email.downcase! }
+  before_save { self.email = email.downcase }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   #存在チェック,文字数チェック
