@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
     #入力されたユーザーがDBに存在し、かつ認証に成功か：失敗したらレンダリングしない
     if user && user&.authenticate(params[:session][:password])
       log_in user
+      #chek_box ON:1 OFF:0
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to user
     else
       flash.now[:danger] = "Invalid email/password combination"
@@ -21,7 +23,7 @@ class SessionsController < ApplicationController
   
   #ログアウト
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url
   end
 end
