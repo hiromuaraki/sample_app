@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   
   #ログインページ表示
   def new
+    
   end
   
   #ログイン
@@ -13,7 +14,7 @@ class SessionsController < ApplicationController
       log_in user
       #chek_box ON:1 OFF:0
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user
+      redirect_back_or user
     else
       flash.now[:danger] = "Invalid email/password combination"
       render 'new' 
