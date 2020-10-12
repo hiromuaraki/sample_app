@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   #詳細ページ表示
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless @user.activated?
+    redirect_to root_url and return unless @user.activated? 
     # debugger
   end
   
