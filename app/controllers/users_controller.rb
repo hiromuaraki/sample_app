@@ -5,12 +5,13 @@ class UsersController < ApplicationController
   #詳細ページ表示
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?
     # debugger
   end
   
   #ユーザー一覧表示
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
   
   #signup表示
@@ -23,10 +24,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     #保存に失敗したらリダイレクトしない
     return render 'new' unless @user.save
-    #登録完了後、ログイン中に済みにする
-    log_in @user
-    flash[:success] = "Welcome to the Sample App!"
-    redirect_to @user
+    @user.send_activation_email
+    flash[:info] = "Please check your email to activate your account."
+    redirect_to root_url
   end
   
   #編集ページ
