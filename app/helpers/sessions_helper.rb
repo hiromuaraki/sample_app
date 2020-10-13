@@ -14,7 +14,7 @@ module SessionsHelper
       user = User.find_by(id: cookies.signed[:user_id])
       if user && user&.authenticated?(:remember,cookies[:remember_token])
         #ログイン済みにする
-        log_in nuser
+        log_in user
         @current_user = user
       end
     end
