@@ -36,10 +36,10 @@ group :test do
   gem 'guard-minitest',           '2.4.4'
 end
 
-group :production do
-  gem 'pg', '0.20.0'
-  gem 'fog', '1.42'
-end
+# group :production do
+#   gem 'pg', '0.20.0'
+#   gem 'fog', '1.42'
+# end
 
 # Windows環境ではtzinfo-dataというgemを含める必要があります
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
