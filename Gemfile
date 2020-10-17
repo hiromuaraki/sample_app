@@ -4,7 +4,8 @@ gem 'rails',        '5.1.6'
 gem 'bcrypt',         '3.1.12'
 gem 'faker',          '1.7.3'
 gem 'carrierwave',             '1.2.2'
-# gem 'fog',                      '1.41'
+gem 'fog',                      '1.41'
+gem 'pg', '~> 0.19.0', group: :production
 gem 'fog-aws',                 '2.0.0'
 gem 'mini_magick',             '4.7.0'
 gem 'will_paginate',           '3.1.6'
@@ -38,10 +39,10 @@ group :test do
   gem 'guard-minitest',           '2.4.4'
 end
 
-group :production do
-  gem 'pg', '0.20.0'
-  gem 'fog', '1.42'
-end
+# group :production do
+#   gem 'pg', '0.20.0'
+#   gem 'fog', '1.42'
+# end
 
 # Windows環境ではtzinfo-dataというgemを含める必要があります
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
