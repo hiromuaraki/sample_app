@@ -24,10 +24,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     #保存に失敗したらリダイレクトしない
-    return render 'new' unless @user.save
-    @user.send_activation_email
-    flash[:info] = "Please check your email to activate your account."
-    redirect_to root_url
+    if @user.save
+      #ログイン済みにする
+      log_in @user
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
+    end
   end
   
   #編集ページ
