@@ -15,6 +15,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               email: email,
                                               password:              "",
                                               password_confirmation: "" } }
+    # assert_select "div.alert", "The form contains 4 errors."
 
     assert_not flash.empty?
     assert_redirected_to @user
